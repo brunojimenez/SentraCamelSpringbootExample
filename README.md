@@ -6,7 +6,7 @@ Luego de esto, puedes importar el proyecto a Spring Tool Suite (Eclipse).
 
 Al revisar los fuentes, se encontrará una clase con la anotación @SpringBootApplication.
 
-´´´
+```
 package cl.sentra.bjimenez.camel.example.DemoCamel;
 
 import org.springframework.boot.SpringApplication;
@@ -20,11 +20,11 @@ public class DemoCamelApplication {
 	}
 
 }
-´´´
+```
 
 Se le debe agregar una llamada a contexto de Camel con la anotación @ImportResource.
 
-´´´
+```
 package cl.sentra.bjimenez.camel.example.DemoCamel;
 
 import org.springframework.boot.SpringApplication;
@@ -39,11 +39,11 @@ public class DemoCamelApplication {
 	}
 
 }
-´´´
+```
 
 El archivo spring-camel-context.xml, debe estar dentro del classpath (ojalá src/main/resources/) y puedes obtener una versión inicial del XML en https://camel.apache.org/components/latest/spring.html.
 
-´´´
+```
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
@@ -59,4 +59,4 @@ El archivo spring-camel-context.xml, debe estar dentro del classpath (ojalá src
   </camelContext>
 
 </beans>
-´´´
+```
