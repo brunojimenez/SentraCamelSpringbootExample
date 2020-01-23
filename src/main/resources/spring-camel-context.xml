@@ -1,15 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
-       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://camel.apache.org/schema/spring 
+		http://camel.apache.org/schema/spring/camel-spring.xsd
     ">
 
 	<camelContext id="camel-A"
 		xmlns="http://camel.apache.org/schema/spring">
-		<route>
-			<from uri="seda:start" />
-			<to uri="mock:result" />
+
+		<restConfiguration bindingMode="auto"
+			component="netty-http" port="8889" />
+
+		<rest path="api">
+			<get uri="/test">
+				<to uri="direct:test" />
+			</get>
+		</rest>
+		<route streamCache="true">
+			<from uri="direct:test" />
+			<log message="body:${body}" />
 		</route>
 	</camelContext>
 
